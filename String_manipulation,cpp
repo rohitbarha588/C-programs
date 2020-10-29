@@ -1,0 +1,41 @@
+//This is a program to capitalize the first and last letter of each word in a line
+
+#include <bits/stdc++.h>
+using namespace std;
+void capital(char* arr, int i);
+int main()
+{
+char sentence[100], c;
+int i=0;
+printf(“\nEnter the word : “);
+scanf(“%c”,&c);
+while(c!=’\n’)
+{
+sentence[i++]=c;
+scanf(“%c”,&c);
+}
+capital(sentence,i);
+return 0;
+}
+void capital(char* arr, int i)
+{
+unordered_set str;
+str.insert(0); // first char index
+str.insert(i-1); // last char index
+
+for(int j=1;j<i;j++)
+{
+if(arr[j]==’ ‘)
+{
+if(str.find(j-1)==str.end())
+str.insert(j-1);
+if(str.find(j+1)==str.end())
+str.insert(j+1);
+}
+}
+for(auto i=str.begin(); i!=str.end(); i++)
+arr[*i]-=32;
+for(int j=0;j<i;j++)
+printf(“%c”,arr[j]);
+printf(“\n”);
+}
